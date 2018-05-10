@@ -1,0 +1,35 @@
+{
+  "name": "viewer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-3"
+    ]
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-polyfill": "^6.20.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-3": "^6.17.0",
+    "babel-runtime": "^6.20.0",
+    "clean-webpack-plugin": "^0.1.15",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-table": "^6.8.2",
+    "webpack": "^1.14.0",
+    "style-loader": "^0.13.1",
+    "css-loader": "^0.26.1"
+  }
+}
