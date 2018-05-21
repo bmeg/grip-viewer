@@ -5,14 +5,14 @@ import cytoscape from 'cytoscape';
 
 import {connect} from 'react-redux';
 
-
 class GraphContainer extends React.Component{
     constructor(props){
         super(props);
-        this.renderCytoscapeElement = this.renderCytoscapeElement.bind(this);
+        this.build = this.build.bind(this);
+        this.clean = this.clean.bind(this);
     }
 
-    renderCytoscapeElement(){
+    build(){
 
         console.log('* Cytoscape.js is rendering the graph..');
 
@@ -29,11 +29,13 @@ class GraphContainer extends React.Component{
                     'height': 80,
                     'width': 80,
                     'background-fit': 'cover',
-                    'border-color': '#000',
+                    'border-color': '#666',
+                    "font-size": "14px",
                     'border-width': 3,
                     'border-opacity': 0.5,
-                    'content': 'data(name)',
+                    'content': 'data(id)',
                     'text-valign': 'center',
+                    'label': 'data(id)'
                 })
                 .selector('edge')
                 .css({
@@ -44,44 +46,37 @@ class GraphContainer extends React.Component{
                     'curve-style': 'bezier'
                 })
                 ,
-            elements: {
-                nodes: [
-                    { data: { id: 'cat' } },
-                    { data: { id: 'bird' } },
-                    { data: { id: 'ladybug' } },
-                    { data: { id: 'aphid' } },
-                    { data: { id: 'rose' } },
-                    { data: { id: 'grasshopper' } },
-                    { data: { id: 'plant' } },
-                    { data: { id: 'wheat' } }
-                ],
-                edges: [
-                    { data: { source: 'cat', target: 'bird' } },
-                    { data: { source: 'bird', target: 'ladybug' } },
-                    { data: { source: 'bird', target: 'grasshopper' } },
-                    { data: { source: 'grasshopper', target: 'plant' } },
-                    { data: { source: 'grasshopper', target: 'wheat' } },
-                    { data: { source: 'ladybug', target: 'aphid' } },
-                    { data: { source: 'aphid', target: 'rose' } }
-                ]
-            },
+            elements: this.props.elements,
 
             layout: {
-                name: 'breadthfirst',
+                name: 'cose',
                 directed: true,
                 padding: 10
             }
             });
     }
 
-    componentDidMount(){
-        this.renderCytoscapeElement();
-    }
+  clean() {
+		if (this.cy) {
+			this.cy.destroy();
+		}
+	}
 
-    render(){
+  componentDidMount(){
+      this.build();
+  }
+
+
+  componentDidUpdate() {
+  		this.clean();
+  		this.build();
+  }
+
+
+  render(){
         let cyStyle = {
-          height: '1000px',
-          width: '1000px',
+          height: '100%',
+          width: '100%',
           margin: '20px 0px'
         };
         return(
@@ -93,8 +88,10 @@ class GraphContainer extends React.Component{
 }
 
 
-function mapStateToProps(state){
-    return {};
-}
+//function mapStateToProps(state){
+//    return {"elements" : state.elements};
+//}
 
-export default connect(mapStateToProps,null)(GraphContainer);
+//export default connect(mapStateToProps,null)(GraphContainer);
+
+export default GraphContainer;
