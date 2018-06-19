@@ -7,19 +7,25 @@ module.exports = {
     './src/viewer.jsx'
   ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist/static'),
     filename: 'viewer.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx$/,
-        loaders: ['babel'],
         exclude: /node_modules/,
-      },{
+        use: [
+          {loader:'babel-loader'},
+        ],
+      },
+      {
        test: /\.css$/,
-       loaders: ['style', 'css'],
-     }
+       use: [
+         {loader: 'style-loader'},
+         {loader: 'css-loader'}
+       ],
+      }
     ]
   }
 };
