@@ -17,14 +17,9 @@ class Viewer extends React.Component {
       graphs: [],
       schema: {
         nodes: [
-          { data: { id: "Individual" } },
-          { data: { id: "Biosample" } },
-          { data: { id: "GeneExpression" } }
+          { data: { id: "Please Select a Graph" } }
         ],
-        edges: [
-          { data: { source: "Individual", target: "Biosample" } },
-          { data: { source: "Biosample", target: "GeneExpression" } }
-        ]
+        edges: []
       }
     };
 
@@ -59,38 +54,21 @@ class Viewer extends React.Component {
 
   schemaQuery(graph) {
     console.log("querying schema for graph: ", graph)
-    fetch( "/v1/graph/" + graph + "-schema/query", {
-      method: "POST",
-      headers: {"Content-Type": "application/json", "Accept": "application/json"},
-      body: JSON.stringify( {query:[{"v":[]},{"where":{"condition": {"key": "_label", "value": "Object", "condition": "EQ"}}}]} ),
+    fetch( "/v1/graph/" + graph + "/schema", {
+      method: "GET",
     }).then(function(response) {
       if (!response.ok) {
         throw Error(response.status  + " " + response.statusText);
       }
-      return response.text()
-    }).then(function(text) {
-      var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
-      var nodes = lines.map(JSON.parse).map(function(x) {
-        return {"data": {"id": x["vertex"]["gid"]}}
-      }).filter( (x) => x.data.id != "root" )
-      return nodes;
-    }).then(function(nodes){
-      fetch( "/v1/graph/" + graph + "-schema/query", {
-        method: "POST",
-        headers: {"Content-Type": "application/json", "Accept": "application/json"},
-        body: JSON.stringify( {query:[{"e":[]},{"where":{"condition": {"key": "_label", "value": "field", "condition": "EQ"}}}]} ),
-      }).then(function(response) {
-        if (!response.ok) {
-          throw Error(response.status  + " " + response.statusText);
-        }
-        return response.text()
-      }).then(function(text){
-        var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
-        var edges = lines.map(JSON.parse).map(function(x){
-          return {"data": {"source": x["edge"]["from"], "target":x["edge"]["to"]}}
-        }).filter( (x) => x.data.source != "root" )
-        this.setState({schema: {"nodes": nodes, "edges": edges}})
-      }.bind(this))
+      return response.json()
+    }).then(function(json) {
+      var edges = json["edges"].map(function(x){
+        return {"data": {"source": x["from"], "target": x["to"]}}
+      })
+      var vertices = json["vertices"].map(function(x){
+        return {"data": {"id": x["label"]}}
+      })
+      this.setState({schema: {"nodes": vertices, "edges": edges}})
     }.bind(this))
   }
 
@@ -141,7 +119,7 @@ class Viewer extends React.Component {
   }
 
   render() {
-    let textStyle = {width: "90%", height: "30px", fontSize: "16px", margin: "5px"}
+    let textStyle = {width: "100%", height: "30px", fontSize: "16px", margin: "5px"}
     let selectStyle = {width: "15%", height: "35px", fontSize: "16px", margin: "5px"}
     let buttonStyle = {height: "35px", fontSize: "16px", margin: "5px"}
     let optionItems = this.state.graphs.map(
@@ -150,7 +128,7 @@ class Viewer extends React.Component {
     let graphStyle = {width: "100%", height: "500px", margin: "5px"}
 
     return (
-      <div style={{margin: "10px"}}>
+      <div style={{margin: "2.5%"}}>
         <div style={graphStyle}>
           <GraphContainer elements={this.state.schema}/>
         </div>
