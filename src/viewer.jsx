@@ -15,7 +15,8 @@ class Viewer extends React.Component {
       result:[],
       graph: "",
       graphs: [],
-      schema: {
+      schema: {},
+      elements: {
         nodes: [
           { data: { id: "Please Select a Graph" } }
         ],
@@ -37,10 +38,8 @@ class Viewer extends React.Component {
     console.log("listing graphs...")
     fetch( "/v1/graph", {
       method: "GET",
+      credentials: "same-origin",
     }).then(function(response) {
-      if (!response.ok) {
-        throw Error(response.status  + " " + response.statusText);
-      }
       return response.text()
     }).then(function(text) {
       var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
@@ -56,19 +55,18 @@ class Viewer extends React.Component {
     console.log("querying schema for graph: ", graph)
     fetch( "/v1/graph/" + graph + "/schema", {
       method: "GET",
+      credentials: "same-origin",
     }).then(function(response) {
-      if (!response.ok) {
-        throw Error(response.status  + " " + response.statusText);
-      }
       return response.json()
     }).then(function(json) {
       var edges = json["edges"].map(function(x){
         return {"data": {"source": x["from"], "target": x["to"]}}
       })
-      var vertices = json["vertices"].map(function(x){
+      var nodes = json["vertices"].map(function(x){
         return {"data": {"id": x["label"]}}
       })
-      this.setState({schema: {"nodes": vertices, "edges": edges}})
+      this.setState({elements: {"nodes": nodes, "edges": edges}})
+      this.setState({schema: json})
     }.bind(this))
   }
 
@@ -83,12 +81,10 @@ class Viewer extends React.Component {
     console.log("querying graph: ", q)
     fetch( "/v1/graph/" + this.state.graph + "/query", {
       method: "POST",
+      credentials: "same-origin",
       headers: {"Content-Type": "application/json", "Accept": "application/json"},
       body: JSON.stringify( {query: q.query} ),
     }).then(function(response) {
-      if (!response.ok) {
-        throw Error(response.status  + " " + response.statusText);
-      }
       return response.text()
     }).then(function(text) {
       var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
@@ -130,7 +126,7 @@ class Viewer extends React.Component {
     return (
       <div style={{margin: "2.5%"}}>
         <div style={graphStyle}>
-          <GraphContainer elements={this.state.schema}/>
+          <GraphContainer elements={this.state.elements} schema={this.state.schema}/>
         </div>
         <div>
           <select style={selectStyle} value={this.state.graph} onChange={this.handleSelect}>
