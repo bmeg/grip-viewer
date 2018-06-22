@@ -61,29 +61,27 @@ class GraphContainer extends React.Component{
 
     var formatData = function(obj, indent) {
       var result = "";
-      if (indent == null) indent = "";
+      if (indent == null) {
+        indent = "";
+      }
 
-      for (var property in obj)
-      {
+      for (var property in obj) {
         var value = obj[property];
-        if (typeof value == 'string')
+        if (typeof value == 'string') {
           value = "'" + value + "'";
-        else if (typeof value == 'object')
-        {
-          if (value instanceof Array)
-          {
+        } else if (typeof value == 'object') {
+          if (value instanceof Array) {
+            if (value.length > 0) {
+              if (typeof value[0] != 'string') {
+                value = formatData(value[0], indent + "  ");
+                value = "{\n" + value + "\n" + indent + "}";
+              }
+            }
             // Just let JS convert the Array to a string!
             value = "[ " + value + " ]";
-          }
-          else
-          {
-            // Recursive dump
-            // (replace "  " by "\t" or something else if you prefer)
+          } else {
             var od = formatData(value, indent + "  ");
-            // If you like { on the same line as the key
             value = "{\n" + od + "\n" + indent + "}";
-            // If you prefer { and } to be aligned
-            // value = "\n" + indent + "{\n" + od + "\n" + indent + "}";
           }
         }
         result += indent + "'" + property + "': " + value + ",\n";
