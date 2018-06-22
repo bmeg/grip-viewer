@@ -1,6 +1,10 @@
 import React from "react";
 import cytoscape from "cytoscape";
+import popper from "cytoscape-popper";
+import tippy from 'tippy.js'
 import _ from "underscore";
+
+cytoscape.use( popper );
 
 class GraphContainer extends React.Component{
   constructor(props){
@@ -13,16 +17,17 @@ class GraphContainer extends React.Component{
 
     console.log("Cytoscape.js is rendering the graph...");
 
-    this.cy = cytoscape(
+    var cy = cytoscape(
       {
         container: document.getElementById("cy"),
 
         boxSelectionEnabled: false,
         autounselectify: true,
 
-        // zoomingEnabled: false,
         minZoom: 0.5,
         maxZoom: 10,
+
+        elements: this.props.elements,
 
         style: cytoscape.stylesheet()
           .selector("node")
@@ -47,14 +52,46 @@ class GraphContainer extends React.Component{
             "curve-style": "bezier"
           })
         ,
-        elements: this.props.elements,
-
         layout: {
           name: "cose",
           directed: true,
           padding: 10
         }
       });
+
+    var schemaTooltip = function(node, text){
+			return tippy( node.popperRef(), {
+				html: (function(){
+					var div = document.createElement('div');
+          div.id = node.id() + "-schema-tip";
+					div.innerHTML = text;
+					return div;
+				})(),
+				trigger: 'manual',
+				placement: 'bottom',
+				arrow: true,
+				hideOnClick: false,
+				multiple: true,
+				sticky: true
+			} ).tooltips[0];
+		};
+
+    var tooltips = {};
+    if (this.props.schema && 
+        this.props.schema.vertices && 
+        this.props.schema.vertices.length) {
+      this.props.schema.vertices.map(function(x){        
+        var v = cy.getElementById(x["label"]);
+        tooltips[v.id()] = schemaTooltip(v, JSON.stringify(x["data"], null, "\t"));
+        v.on('tap', function(event) { 
+          if (tooltips[event.target.id()].state.visible) { 
+            tooltips[event.target.id()].hide();
+          } else {
+            tooltips[event.target.id()].show()
+          }
+        });
+      });
+    }
   }
 
   clean() {
@@ -73,7 +110,8 @@ class GraphContainer extends React.Component{
   }
 
   shouldComponentUpdate(nextProps) {
-    return !_.isEqual(this.props.elements, nextProps.elements)
+    return !_.isEqual(this.props.elements, nextProps.elements) || 
+      !_.isEqual(this.props.schema, nextProps.schema)
   }
 
   render() {
