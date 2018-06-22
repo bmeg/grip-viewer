@@ -15,7 +15,10 @@ class Viewer extends React.Component {
       result:[],
       graph: "",
       graphs: [],
-      schema: {},
+      schema: {
+        vertices: [],
+        edges: [],
+      },
       elements: {
         nodes: [
           { data: { id: "Please Select a Graph" } }
@@ -65,8 +68,7 @@ class Viewer extends React.Component {
       var nodes = json["vertices"].map(function(x){
         return {"data": {"id": x["label"]}}
       })
-      this.setState({elements: {"nodes": nodes, "edges": edges}})
-      this.setState({schema: json})
+      this.setState({elements: {"nodes": nodes, "edges": edges}, schema: json})
     }.bind(this))
   }
 
