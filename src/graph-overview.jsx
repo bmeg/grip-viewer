@@ -49,9 +49,14 @@ class GraphContainer extends React.Component{
             "target-arrow-shape": "triangle",
             "line-color": "#ffaaaa",
             "target-arrow-color": "#ffaaaa",
-            "curve-style": "bezier"
-          })
-        ,
+            "curve-style": "bezier",
+            "label": "data(label)"
+          }) 
+          .selector(".autorotate")
+          .css({
+            "edge-text-rotation": "autorotate"
+          }),
+
         layout: {
           name: "cose",
           directed: true,
@@ -63,6 +68,10 @@ class GraphContainer extends React.Component{
       var result = "";
       if (indent == null) {
         indent = "";
+      }
+
+      if (_.isEmpty(obj)) {
+        return "Graph element has no properties"
       }
 
       for (var property in obj) {
@@ -113,6 +122,22 @@ class GraphContainer extends React.Component{
         this.props.schema.vertices.length) {
       this.props.schema.vertices.map(function(x){        
         var v = cy.getElementById(x["label"]);
+        tooltips[v.id()] = schemaTooltip(v, formatData(x["data"]));
+        v.on('tap', function(event) { 
+          if (tooltips[event.target.id()].state.visible) { 
+            tooltips[event.target.id()].hide();
+          } else {
+            tooltips[event.target.id()].show()
+          }
+        });
+      });
+    }
+
+    if (this.props.schema && 
+        this.props.schema.edges && 
+        this.props.schema.edges.length) {
+      this.props.schema.edges.map(function(x){        
+        var v = cy.getElementById(x["label"] + x["from"] + x["to"]);
         tooltips[v.id()] = schemaTooltip(v, formatData(x["data"]));
         v.on('tap', function(event) { 
           if (tooltips[event.target.id()].state.visible) { 
