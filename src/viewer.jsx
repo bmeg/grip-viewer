@@ -63,7 +63,15 @@ class Viewer extends React.Component {
       return response.json()
     }).then(function(json) {
       var edges = json["edges"].map(function(x){
-        return {"data": {"source": x["from"], "target": x["to"]}}
+        return {
+          "data": {
+            "id": x["label"] + x["from"] + x["to"], 
+            "label": x["label"], 
+            "source": x["from"], 
+            "target": x["to"]
+          }, 
+          "classes": "autorotate"
+        }
       })
       var nodes = json["vertices"].map(function(x){
         return {"data": {"id": x["label"]}}

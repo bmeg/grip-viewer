@@ -21,8 +21,8 @@
        root.classList.add('playgroundIn');
        const wsProto = location.protocol == 'https:' ? 'wss:' : 'ws:'
        GraphQLPlayground.init(root, {
-         endpoint: location.protocol + '//' + location.host + '/graphql/bmeg',
-         subscriptionsEndpoint: wsProto + '//' + location.host + '/graphql/bmeg',
+         endpoint: location.protocol + '//' + location.host + '/graphql/GRAPH-NAME',
+         subscriptionsEndpoint: wsProto + '//' + location.host + '/graphql/GRAPH-NAME',
        })
      })
     </script>
