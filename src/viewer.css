@@ -1,0 +1,7 @@
+.ReactTable .-pagination .-btn {
+  height: auto;
+}
+
+.ReactTable .rt-thead .rt-resizable-header-content{
+  font-size: 1.25em;
+}
