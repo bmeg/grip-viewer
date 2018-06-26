@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-// Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
-import GraphContainer from "./graph-overview.jsx"
+import GraphContainer from "./graph-overview.jsx";
 import O from "./aql.js";
+import "./viewer.css";
 
 class Viewer extends React.Component {
   constructor(props) {
@@ -103,7 +103,7 @@ class Viewer extends React.Component {
       return response.text()
     }).then(function(text) {
       var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
-      var parsed = lines.map(JSON.parse).map(function(x){ return <div>{JSON.stringify(x["result"])}</div> });
+      var parsed = lines.map(JSON.parse).map(function(x){ return {"result": JSON.stringify(x["result"])} });
       this.setState({queryResult: parsed});
     }.bind(this))
   }
@@ -130,39 +130,55 @@ class Viewer extends React.Component {
   }
 
   render() {
-    let textStyle = {width: "100%", height: "30px", fontSize: "16px", margin: "5px 0px"}
-    let selectStyle = {width: "15%", height: "35px", fontSize: "16px", margin: "5px 0px"}
-    let buttonStyle = {height: "35px", fontSize: "16px", margin: "5px 0px"}
+    let graphStyle = {width: "80%", height: "500px", margin: "5px auto"}
+
+    let selectStyle = {width: "15%", height: "2em", fontSize: "1.25em", margin: "5px 0px"}
     let optionItems = this.state.graphs.map(
       (graph) => <option key={graph}>{graph}</option>
     )
-    let graphStyle = {width: "80%", height: "500px", margin: "5px auto"}
-    const columns = [{
-      Header: "Query Results",
-      accessor: "result"
-    }]
+    let textStyle = {width: "100%", height: "2em", fontSize: "1.25em", margin: "5px 0px"}
+    let buttonStyle = {height: "2em", fontSize: "1.25em", margin: "5px 0px"}
 
     return (
       <div style={{margin: "2.5%"}}>
+
         <div style={graphStyle}>
           <GraphContainer elements={this.state.elements} schema={this.state.schema}/>
         </div>
+
         <div>
           <select style={selectStyle} value={this.state.graph} onChange={this.handleSelect}>
             <option value="" disabled>Select Graph</option>
             {optionItems}
           </select>
         </div>
+
         <div>
           <textarea style={textStyle} value={this.state.value} onChange={this.handleChange} onKeyUp={this.handleKeyPress} placeholder="O.query().V()..."/>
         </div>
+
         <div>
           <button style={buttonStyle} type="submit" value="Submit" onClick={this.handleSubmit}>Search</button>
         </div>
-        <h2>Query Results</h2>
+
         <div>
-          {this.state.queryResult}
+          <ReactTable
+            data={this.state.queryResult}
+            columns={[
+              {
+                Header: "Query Results",
+                accessor: "result"
+              }
+            ]}
+            noDataText={"No Results"}
+            pageSizeOptions={[10, 25, 50, 100]}
+            defaultPageSize={10}
+            minRows={10}
+            sortable={true}
+            className={"-striped -highlight"}
+          />
         </div>
+
       </div>
     );
   }

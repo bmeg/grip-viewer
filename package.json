@@ -38,7 +38,7 @@
     "react-cytoscape": "^1.0.6",
     "react-dom": "^16.3.2",
     "react-redux": "^5.0.7",
-    "react-table": "^6.8.2",
+    "react-table": "^6.8.6",
     "redux": "^4.0.0",
     "style-loader": "^0.21.0",
     "tippy.js": "^2.5.3",
