@@ -1,16 +1,22 @@
 {
-  "name": "viewer",
+  "name": "arachne-graph-viewer",
   "version": "0.1.0",
-  "description": "",
+  "description": "Query and explore the schema of graphs in Arachne.",
+  "homepage": "https://github.com/bmeg/arachne-viewer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bmeg/arachne-viewer.git"
+  },
+  "author": "Adam Struck",
+  "email": "strucka@ohsu.edu",
+  "license": "MIT",
+  "keywords": [],
   "main": "viewer.js",
   "scripts": {
     "start": "webpack-dev-server",
     "watch": "webpack --watch",
     "build": "webpack"
   },
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "babel": {
     "presets": [
       "es2015",
@@ -26,7 +32,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.17.0",
     "babel-runtime": "^6.20.0",
-    "clean-webpack-plugin": "^0.1.15",
     "css-loader": "^0.28.11",
     "cytoscape-popper": "^1.0.1",
     "react": "^16.3.2",
