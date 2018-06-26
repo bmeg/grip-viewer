@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+
 // Import React Table
 import ReactTable from "react-table";
 import "react-table/react-table.css";
@@ -12,7 +13,7 @@ class Viewer extends React.Component {
     super(props);
     this.state = {
       query: "",
-      result:[],
+      queryResult: [],
       graph: "",
       graphs: [],
       schema: {
@@ -88,7 +89,11 @@ class Viewer extends React.Component {
       console.log("there is no query to submit")
       return
     }
-    console.log("querying graph: ", q)
+    if (this.state.graph == "") {
+      console.log("no graph was selected to query")
+      return
+    }
+    console.log("querying graph:", this.state.graph, ":",  q)
     fetch( "/v1/graph/" + this.state.graph + "/query", {
       method: "POST",
       credentials: "same-origin",
@@ -98,8 +103,8 @@ class Viewer extends React.Component {
       return response.text()
     }).then(function(text) {
       var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
-      var parsed = lines.map(function(x, i){return <div key={i}>{x}</div>})
-      this.setState({result: <div>{parsed}</div>});
+      var parsed = lines.map(JSON.parse).map(function(x){ return <div>{JSON.stringify(x["result"])}</div> });
+      this.setState({queryResult: parsed});
     }.bind(this))
   }
 
@@ -125,13 +130,17 @@ class Viewer extends React.Component {
   }
 
   render() {
-    let textStyle = {width: "100%", height: "30px", fontSize: "16px", margin: "5px"}
-    let selectStyle = {width: "15%", height: "35px", fontSize: "16px", margin: "5px"}
-    let buttonStyle = {height: "35px", fontSize: "16px", margin: "5px"}
+    let textStyle = {width: "100%", height: "30px", fontSize: "16px", margin: "5px 0px"}
+    let selectStyle = {width: "15%", height: "35px", fontSize: "16px", margin: "5px 0px"}
+    let buttonStyle = {height: "35px", fontSize: "16px", margin: "5px 0px"}
     let optionItems = this.state.graphs.map(
       (graph) => <option key={graph}>{graph}</option>
     )
-    let graphStyle = {width: "100%", height: "500px", margin: "5px"}
+    let graphStyle = {width: "80%", height: "500px", margin: "5px auto"}
+    const columns = [{
+      Header: "Query Results",
+      accessor: "result"
+    }]
 
     return (
       <div style={{margin: "2.5%"}}>
@@ -150,9 +159,9 @@ class Viewer extends React.Component {
         <div>
           <button style={buttonStyle} type="submit" value="Submit" onClick={this.handleSubmit}>Search</button>
         </div>
-        <br/>
+        <h2>Query Results</h2>
         <div>
-          {this.state.result}
+          {this.state.queryResult}
         </div>
       </div>
     );

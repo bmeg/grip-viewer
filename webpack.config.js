@@ -1,5 +1,4 @@
 const path = require('path');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: [
