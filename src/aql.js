@@ -1,4 +1,4 @@
-
+import _ from "underscore";
 
 function query() {
 	function process(l) {
@@ -181,7 +181,30 @@ function histogram(name, label, field, interval) {
 	}
 }
 
-// base query object
-O = {
-	query : query
+function V(id) {
+  return query().V(id)
+}
+
+function E(id) {
+  return query().V(id)
+}
+
+export {
+  query,
+  V,
+  E,
+  and_,
+  or_,
+  not_,
+  eq,
+  neq,
+  lt,
+  lte,
+  gt,
+  gte,
+  in_,
+  contains,
+  term,
+  percentile,
+  histogram
 }

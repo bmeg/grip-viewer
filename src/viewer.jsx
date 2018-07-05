@@ -5,8 +5,16 @@ import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 import GraphContainer from "./graph-overview.jsx";
-import O from "./aql.js";
 import "./viewer.css";
+
+// import { 
+//   V, E, 
+//   and_, or_, not_, 
+//   eq, neq, lt, lte, gt, gte, in_, contains, 
+//   term, percentile, histogram
+// } from "./aql.js";
+// import * as aql from "./aql.js";
+import aql from "./aql.js";
 
 class Viewer extends React.Component {
   constructor(props) {
@@ -130,8 +138,6 @@ class Viewer extends React.Component {
   }
 
   render() {
-    let graphStyle = {width: "75%", height: "500px", display: "block", margin: "5px auto"}
-
     let selectStyle = {width: "15%", height: "2em", fontSize: "1.25em", margin: "5px 0px"}
     let optionItems = this.state.graphs.map(
       (graph) => <option key={graph}>{graph}</option>
@@ -140,28 +146,28 @@ class Viewer extends React.Component {
     let buttonStyle = {height: "2em", fontSize: "1.25em", margin: "5px 0px"}
 
     return (
-      <div style={{margin: "2.5%"}}>
+      <div id="appContainer" style={{margin: "2.5%"}}>
 
-        <div style={graphStyle}>
+        <div id="graphContainer">
           <GraphContainer elements={this.state.elements} schema={this.state.schema}/>
         </div>
 
-        <div>
+        <div id="selectGraph">
           <select style={selectStyle} value={this.state.graph} onChange={this.handleSelect}>
             <option value="" disabled>Select Graph</option>
             {optionItems}
           </select>
         </div>
 
-        <div>
+        <div id="queryTextBox">
           <textarea style={textStyle} value={this.state.value} onChange={this.handleChange} onKeyUp={this.handleKeyPress} placeholder="O.query().V()..."/>
         </div>
 
-        <div>
+        <div id="submitButton">
           <button style={buttonStyle} type="submit" value="Submit" onClick={this.handleSubmit}>Search</button>
         </div>
 
-        <div>
+        <div id="resultsTable">
           <ReactTable
             data={this.state.queryResult}
             columns={[

@@ -1,6 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
+  mode: 'production',
   entry: [
     'babel-polyfill',
     './src/viewer.jsx'
@@ -12,20 +14,31 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: [
-          {loader:'babel-loader'},
+          {
+            loader:'babel-loader',
+            options: {
+              presets: ['react', 'env']
+            }
+          }
         ],
       },
       {
-       test: /\.css$/,
-       use: [
-         {loader: 'style-loader'},
-         {loader: 'css-loader'}
-       ],
+        test: /\.css$/,
+        use: [
+          {loader: 'style-loader'},
+          {loader: 'css-loader'}
+        ],
       }
-    ]
+    ],
+  },
+  stats: {
+    // Examine all modules
+    maxModules: Infinity,
+    // Display bailout reasons
+    optimizationBailout: true
   },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),

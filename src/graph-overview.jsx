@@ -39,7 +39,6 @@ class GraphContainer extends React.Component{
             "font-size": "14px",
             "border-width": 3,
             "border-opacity": 0.5,
-            "content": "data(id)",
             "text-valign": "center",
             "label": "data(id)"
           })
@@ -58,9 +57,7 @@ class GraphContainer extends React.Component{
           }),
 
         layout: {
-          name: "cose",
-          directed: true,
-          padding: 10
+          name: "cose"
         }
       });
 
@@ -99,7 +96,7 @@ class GraphContainer extends React.Component{
     }
 
     var schemaTooltip = function(node, text){
-			return tippy( node.popperRef(), {
+			return tippy.one( node.popperRef(), {
 				html: (function(){
 					var div = document.createElement('div');
           div.id = node.id() + "-schema-tip";
@@ -113,13 +110,15 @@ class GraphContainer extends React.Component{
 				hideOnClick: false,
 				multiple: true,
 				sticky: true,
+				flip: false,
+				appendTo: document.getElementById("graphContainer"),
 				popperOptions: {
-					modifiers: {
-						preventOverflow: { enabled: true },
-						keepTogether: { enabled: true }
-					}
+				 	modifiers: {
+				 	  preventOverflow: { enabled: false },
+					  hide: { enabled: false },
+				 	}
 				}
-			}).tooltips[0];
+			});
 		};
 
     var tooltips = {};
@@ -187,14 +186,15 @@ class GraphContainer extends React.Component{
 
   render() {
     let cyStyle = {
-      height: "100%",
-      width: "100%",
-      margin: "20px 0px"
+      "height": "500px",
+      "width": "85%",
+      "margin": "5px auto",
+      "border-style": "solid",
+      "border-color": "#D3D3D3",
+      "border-width": "thin"
     };
     return(
-      <div className="node_selected">
-        <div style={cyStyle} id="cy"/>
-      </div>
+      <div style={cyStyle} id="cy"/>
     )
   }
 }
