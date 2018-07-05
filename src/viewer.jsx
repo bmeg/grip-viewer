@@ -130,7 +130,7 @@ class Viewer extends React.Component {
   }
 
   render() {
-    let graphStyle = {width: "80%", height: "500px", margin: "5px auto"}
+    let graphStyle = {width: "75%", height: "500px", display: "block", margin: "5px auto"}
 
     let selectStyle = {width: "15%", height: "2em", fontSize: "1.25em", margin: "5px 0px"}
     let optionItems = this.state.graphs.map(

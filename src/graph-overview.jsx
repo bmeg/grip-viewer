@@ -24,7 +24,7 @@ class GraphContainer extends React.Component{
         boxSelectionEnabled: false,
         autounselectify: true,
 
-        minZoom: 0.5,
+        minZoom: 0.1,
         maxZoom: 10,
 
         elements: this.props.elements,
@@ -103,7 +103,7 @@ class GraphContainer extends React.Component{
 				html: (function(){
 					var div = document.createElement('div');
           div.id = node.id() + "-schema-tip";
-          div.style = "text-align: left";
+          div.style = "text-align: left;";
 					div.innerHTML = "<pre>"+text+"</pre>";
 					return div;
 				})(),
@@ -112,8 +112,14 @@ class GraphContainer extends React.Component{
 				arrow: true,
 				hideOnClick: false,
 				multiple: true,
-				sticky: true
-			} ).tooltips[0];
+				sticky: true,
+				popperOptions: {
+					modifiers: {
+						preventOverflow: { enabled: true },
+						keepTogether: { enabled: true }
+					}
+				}
+			}).tooltips[0];
 		};
 
     var tooltips = {};
@@ -148,9 +154,18 @@ class GraphContainer extends React.Component{
         });
       });
     }
+
+		this.cy = cy;
+		this.tooltips = tooltips;
   }
 
   clean() {
+		if (this.tooltips) {
+			for (var tip in this.tooltips) {
+				this.tooltips[tip].hide();
+				this.tooltips[tip].destroy();
+			}
+		}
 		if (this.cy) {
 			this.cy.destroy();
 		}
