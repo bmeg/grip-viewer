@@ -33,12 +33,6 @@ module.exports = {
       }
     ],
   },
-  stats: {
-    // Examine all modules
-    maxModules: Infinity,
-    // Display bailout reasons
-    optimizationBailout: true
-  },
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
