@@ -233,7 +233,7 @@ class Viewer extends React.Component {
     }).then(function(response) {
       if (!response.ok) {
         var err = "GET " + response.url + " " + response.status + " " + 
-            response.statusText + ": " + JSON.stringify(response.body)
+            response.statusText
         this.setState({error: err})
         throw err
       }
@@ -256,7 +256,7 @@ class Viewer extends React.Component {
     }).then(function(response) {
       if (!response.ok) {
         var err = "GET " + response.url + " " + response.status + " " + 
-            response.statusText + ": " + JSON.stringify(response.body)
+            response.statusText
         this.setState({error: err})
         throw err
       }
@@ -301,7 +301,7 @@ class Viewer extends React.Component {
     }).then(function(response) {
       if (!response.ok) {
         var err = "POST " + response.url + " " + response.status + " " + 
-            response.statusText + ": " + JSON.stringify(response.body)
+            response.statusText
         this.setState({error: err})
         throw err
       }
