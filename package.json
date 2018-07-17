@@ -13,7 +13,7 @@
   "keywords": [],
   "scripts": {
     "start": "webpack-dev-server",
-    "watch": "webpack --watch",
+    "watch": "webpack -d --watch",
     "build": "webpack -p"
   },
   "babel": {
@@ -23,7 +23,7 @@
     ]
   },
   "dependencies": {
-    "babel-polyfill": "^6.20.0",
+    "cytoscape": "^3.2.14",
     "cytoscape-popper": "^1.0.1",
     "react": "^16.4.1",
     "react-cytoscape": "^1.0.6",

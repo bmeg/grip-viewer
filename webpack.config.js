@@ -4,7 +4,6 @@ const webpack = require('webpack');
 module.exports = {
   mode: 'production',
   entry: [
-    'babel-polyfill',
     './src/viewer.jsx'
   ],
   output: {
@@ -44,5 +43,5 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 8080
-  }
+  },
 };

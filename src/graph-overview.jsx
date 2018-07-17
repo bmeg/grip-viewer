@@ -112,12 +112,7 @@ class GraphContainer extends React.Component{
 				sticky: true,
 				flip: false,
 				appendTo: document.getElementById("graphContainer"),
-				popperOptions: {
-				 	modifiers: {
-				 	  preventOverflow: { enabled: false },
-					  hide: { enabled: false },
-				 	}
-				}
+				popperOptions: {}
 			});
 		};
 
@@ -186,12 +181,12 @@ class GraphContainer extends React.Component{
 
   render() {
     let cyStyle = {
-      "height": "500px",
-      "width": "85%",
-      "margin": "5px auto",
-      "border-style": "solid",
-      "border-color": "#D3D3D3",
-      "border-width": "thin"
+      height: "500px",
+      width: "85%",
+      margin: "5px auto",
+      borderStyle: "solid",
+      borderColor: "#D3D3D3",
+      borderWidth: "thin"
     };
     return(
       <div style={cyStyle} id="cy"/>
