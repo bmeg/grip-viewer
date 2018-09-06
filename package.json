@@ -1,11 +1,11 @@
 {
-  "name": "arachne-graph-viewer",
+  "name": "grip-graph-viewer",
   "version": "0.1.0",
-  "description": "Query and explore the schema of graphs in Arachne.",
-  "homepage": "https://github.com/bmeg/arachne-viewer",
+  "description": "Query and explore the schema of graphs in GRIP.",
+  "homepage": "https://github.com/bmeg/grip-viewer",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bmeg/arachne-viewer.git"
+    "url": "https://github.com/bmeg/grip-viewer.git"
   },
   "author": "Adam Struck",
   "email": "strucka@ohsu.edu",

@@ -1,4 +1,4 @@
-# Arachne Query Dashboard
+# GRIP Query Dashboard
 
 A simple web interface for viewing graph schema and making queries. 
 
