@@ -68,7 +68,7 @@ class GraphContainer extends React.Component{
       }
 
       if (_.isEmpty(obj)) {
-        return "Graph element has no properties"
+        return "    "
       }
 
       for (var property in obj) {
