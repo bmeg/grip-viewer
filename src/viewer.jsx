@@ -307,8 +307,11 @@ class Viewer extends React.Component {
       }
       return response.text()
     }.bind(this)).then(function(text) {
-      var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
-      var parsed = lines.map(JSON.parse).map(function(x){ return {"result": JSON.stringify(x["result"])} });
+      var parsed = [];
+      if (text) {
+        var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
+        var parsed = lines.map(JSON.parse).map(function(x){ return {"result": JSON.stringify(x["result"])} });
+      }
       this.setState({queryResult: parsed});
     }.bind(this))
   }
