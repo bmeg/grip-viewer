@@ -7,7 +7,7 @@ import "react-table/react-table.css";
 import GraphContainer from "./graph-overview.jsx";
 import "./viewer.css";
 
-const aql = `
+const gripql = `
 function process(val) {
 	if (!val) {
 		val = []
@@ -42,20 +42,32 @@ function query() {
 			this.query.push({'both': process(label)})
 			return this
 		},
-		outEdge: function(label) {
-			this.query.push({'out_edge': process(label)})
+		outV: function(label) {
+			this.query.push({'outV': process(label)})
+			return this
+		},
+		inV: function(label) {
+			this.query.push({'inV': process(label)})
+			return this
+		},
+		bothV: function(label) {
+			this.query.push({'bothV': process(label)})
+			return this
+		},
+		outE: function(label) {
+			this.query.push({'out_e': process(label)})
 			return this
 		},
 		inEdge: function(label) {
-			this.query.push({'in_edge': process(label)})
+			this.query.push({'in_e': process(label)})
 			return this
 		},
-		bothEdge: function(label) {
-			this.query.push({'both_edge': process(label)})
+		bothE: function(label) {
+			this.query.push({'both_e': process(label)})
 			return this
 		},
-		mark: function(name) {
-			this.query.push({'mark': name})
+		as_: function(name) {
+			this.query.push({'as': name})
 			return this
 		},
 		select: function(marks) {
@@ -66,8 +78,12 @@ function query() {
 			this.query.push({'limit': n})
 			return this
 		},
-		offset: function(n) {
-			this.query.push({'offset': n})
+		skip: function(n) {
+			this.query.push({'skip': n})
+			return this
+		},
+		range: function(start, stop) {
+			this.query.push({'range': {'start': start, 'stop': stop}})
 			return this
 		},
 		count: function() {
@@ -78,12 +94,28 @@ function query() {
 			this.query.push({'distinct': process(val)})
 			return this
 		},
+		fields: function(fields) {
+			this.query.push({'fields': fields})
+			return this
+		},
 		render: function(r) {
 			this.query.push({'render': r})
 			return this
 		},
-		where: function(expression) {
-			this.query.push({'where': expression})
+		has: function(expression) {
+			this.query.push({'has': expression})
+			return this
+		},
+		hasLabel: function(label) {
+			this.query.push({'hasLabel': process(label)})
+			return this
+		},
+		hasId: function(id) {
+			this.query.push({'hasId': process(id)})
+			return this
+		},
+		hasKey: function(key) {
+			this.query.push({'hasKey': process(key)})
 			return this
 		},
 		aggregate: function() {
@@ -130,8 +162,24 @@ function lte(key, value) {
 	return {'condition': {'key': key, 'value': value, 'condition': 'LTE'}}
 }
 
-function in_(key, values) {
-	return {'condition': {'key': key, 'value': process(values), 'condition': 'IN'}}
+function inside(key, values) {
+	return {'condition': {'key': key, 'value': process(values), 'condition': 'INSIDE'}}
+}
+
+function outside(key, values) {
+	return {'condition': {'key': key, 'value': process(values), 'condition': 'OUTSIDE'}}
+}
+
+function between(key, values) {
+	return {'condition': {'key': key, 'value': process(values), 'condition': 'BETWEEN'}}
+}
+
+function within(key, values) {
+	return {'condition': {'key': key, 'value': process(values), 'condition': 'WITHIN'}}
+}
+
+function without(key, values) {
+	return {'condition': {'key': key, 'value': process(values), 'condition': 'WITHOUT'}}
 }
 
 function contains(key, value) {
@@ -158,7 +206,7 @@ function percentile(name, label, field, percents) {
 		percents = [1, 5, 25, 50, 75, 95, 99]
 	} else {
 		percents = process(percents)
-	} 
+	}
 
   if (!percents.every(function(x){ return typeof x == "number" })) {
 		throw "percents expected to be an array of numbers"
@@ -283,7 +331,17 @@ class Viewer extends React.Component {
   handleSubmit(event) {
     //Hey, lets eval a bare string from the user, thats a really smart thing
     //to do. Try using https://github.com/nx-js/compiler-util
-    var q = eval(aql + this.state.query)
+    var qs = this.state.query
+    if (!qs.startsWith("V(") && !qs.startsWith("E("))  {
+      console.log("invalid query; must start with V() or E()")
+      return
+    }
+    // Add a limit if the user didn't
+    if (!qs.includes("limit")) {
+      console.log("limiting query to first 500 results")
+      qs += ".limit(500)"
+    }
+    var q = eval(gripql + qs)
     if (!q) {
       console.log("there is no query to submit")
       return
@@ -321,10 +379,10 @@ class Viewer extends React.Component {
     this.setState({query: event.target.value});
   }
 
-  //Capture the query as they type
+  //Handle graph selections
   handleSelect(event) {
     console.log("selected graph:", event.target.value)
-    this.setState({graph: event.target.value});
+    this.setState({graph: event.target.value, queryResult: []});
     this.schemaQuery(event.target.value);
   }
 
@@ -355,7 +413,7 @@ class Viewer extends React.Component {
         </div>
 
         <div id="queryTextBox">
-          <textarea style={textStyle} value={this.state.value} onChange={this.handleChange} onKeyUp={this.handleKeyPress} placeholder="V().where(...)"/>
+          <textarea style={textStyle} value={this.state.value} onChange={this.handleChange} onKeyUp={this.handleKeyPress} placeholder="V().hasLabel(...)"/>
         </div>
 
         <div id="submitButton">
