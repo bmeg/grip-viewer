@@ -285,12 +285,9 @@ class Viewer extends React.Component {
         this.setState({error: err})
         throw err
       }
-      return response.text()
-    }.bind(this)).then(function(text) {
-      var lines = text.replace(/^\s+|\s+$/g, "").split("\n")
-      var graphs = lines.map(JSON.parse).map(function(x) {
-        return x["graph"]
-      })
+      return response.json()
+    }.bind(this)).then(function(json) {
+      var graphs = json['graphs']
       console.log("found graphs:", graphs)
       this.setState({graphs: graphs})
     }.bind(this))
