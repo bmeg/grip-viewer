@@ -287,7 +287,9 @@ class Viewer extends React.Component {
       }
       return response.json()
     }.bind(this)).then(function(json) {
-      var graphs = json['graphs']
+      var graphs = json['graphs'].filter(function(g) {
+					return !(g.endsWith("__schema__"))
+			})
       console.log("found graphs:", graphs)
       this.setState({graphs: graphs})
     }.bind(this))
