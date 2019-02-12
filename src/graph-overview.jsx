@@ -121,7 +121,7 @@ class GraphContainer extends React.Component{
         this.props.schema.vertices && 
         this.props.schema.vertices.length) {
       this.props.schema.vertices.map(function(x){        
-        var v = cy.getElementById(x["label"]);
+        var v = cy.getElementById(x["gid"]);
         tooltips[v.id()] = schemaTooltip(v, formatData(x["data"]));
         v.on('tap', function(event) { 
           if (tooltips[event.target.id()].state.visible) { 
@@ -137,7 +137,7 @@ class GraphContainer extends React.Component{
         this.props.schema.edges && 
         this.props.schema.edges.length) {
       this.props.schema.edges.map(function(x){        
-        var v = cy.getElementById(x["label"] + x["from"] + x["to"]);
+        var v = cy.getElementById(x["gid"] + x["from"] + x["to"]);
         tooltips[v.id()] = schemaTooltip(v, formatData(x["data"]));
         v.on('tap', function(event) { 
           if (tooltips[event.target.id()].state.visible) { 

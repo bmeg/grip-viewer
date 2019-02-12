@@ -312,8 +312,8 @@ class Viewer extends React.Component {
       var edges = json["edges"].map(function(x){
         return {
           "data": {
-            "id": x["label"] + x["from"] + x["to"], 
-            "label": x["label"], 
+            "id": x["gid"] + x["from"] + x["to"], 
+            "label": x["gid"], 
             "source": x["from"], 
             "target": x["to"]
           }, 
@@ -321,7 +321,7 @@ class Viewer extends React.Component {
         }
       })
       var nodes = json["vertices"].map(function(x){
-        return {"data": {"id": x["label"]}}
+        return {"data": {"id": x["gid"]}}
       })
       this.setState({elements: {"nodes": nodes, "edges": edges}, schema: json})
     }.bind(this))
