@@ -1,0 +1,748 @@
+{
+  "graph": "bmeg_rc1_2",
+  "vertices": [
+    {
+      "gid": "Program",
+      "label": "Program",
+      "data": {
+          "gdc_attributes": {
+                "dbgap_accession_number": "UNKNOWN",
+                "name": "STRING",
+                "program_id": "STRING"
+              },
+          "program_id": "STRING"
+        }
+    },
+    {
+      "gid": "Project",
+      "label": "Project",
+      "data": {
+          "gdc_attributes": {
+                "dbgap_accession_number": "UNKNOWN",
+                "disease_type": [
+                      "STRING"
+                    ],
+                "name": "STRING",
+                "primary_site": [
+                      "STRING"
+                    ],
+                "summary": {
+                      "case_count": "NUMERIC",
+                      "file_count": "NUMERIC",
+                      "file_size": "NUMERIC"
+                    }
+              },
+          "project_id": "STRING"
+        }
+    },
+    {
+      "gid": "PFAMClan",
+      "label": "PFAMClan",
+      "data": {
+          "accession": "STRING",
+          "description": "STRING",
+          "id": "STRING"
+        }
+    },
+    {
+      "gid": "Compound",
+      "label": "Compound",
+      "data": {
+          "name": "STRING",
+          "term": "STRING",
+          "term_id": "STRING"
+        }
+    },
+    {
+      "gid": "MinimalAllele",
+      "label": "MinimalAllele",
+      "data": {
+          "chromosome": "STRING",
+          "end": "NUMERIC",
+          "genome": "STRING",
+          "name": "STRING",
+          "start": "NUMERIC",
+          "type": "STRING"
+        }
+    },
+    {
+      "gid": "Phenotype",
+      "label": "Phenotype",
+      "data": {
+          "name": "STRING",
+          "term": "STRING",
+          "term_id": "STRING"
+        }
+    },
+    {
+      "gid": "ProteinStructure",
+      "label": "ProteinStructure",
+      "data": {
+          "protein_id": "STRING"
+        }
+    },
+    {
+      "gid": "Gene",
+      "label": "Gene",
+      "data": {
+          "chromosome": "STRING",
+          "description": "STRING",
+          "end": "NUMERIC",
+          "gene_id": "STRING",
+          "genome": "STRING",
+          "start": "NUMERIC",
+          "strand": "STRING",
+          "symbol": "STRING"
+        }
+    },
+    {
+      "gid": "Callset",
+      "label": "Callset",
+      "data": {
+          "normal_aliquot_id": "STRING",
+          "source": "STRING",
+          "tumor_aliquot_id": "STRING"
+        }
+    },
+    {
+      "gid": "PFAMFamily",
+      "label": "PFAMFamily",
+      "data": {
+          "accession": "STRING",
+          "comments": "STRING",
+          "description": "STRING",
+          "pfam_id": "STRING",
+          "type": "STRING"
+        }
+    },
+    {
+      "gid": "GeneOntologyTerm",
+      "label": "GeneOntologyTerm",
+      "data": {
+          "definition": "STRING",
+          "go_id": "STRING",
+          "name": "STRING",
+          "namespace": "STRING",
+          "synonym": [
+                "UNKNOWN"
+              ],
+          "xref": [
+                "UNKNOWN"
+              ]
+        }
+    },
+    {
+      "gid": "Sample",
+      "label": "Sample",
+      "data": {
+          "ccle_attributes": {
+                "Aliases": "STRING",
+                "CCLE_Name": "STRING",
+                "COSMIC_ID": "STRING",
+                "DepMap_ID": "STRING",
+                "Gender": "STRING",
+                "Primary Disease": "STRING",
+                "Sanger ID": "STRING",
+                "Source": "STRING",
+                "Subtype Disease": "STRING"
+              },
+          "gdc_attributes": {
+                "sample_type": "STRING",
+                "submitter_id": "STRING",
+                "tumor_descriptor": "UNKNOWN"
+              },
+          "gtex_attributes": {
+                "SAMPID": "STRING",
+                "SM350NRM": "STRING",
+                "SM550NRM": "STRING",
+                "SMAFRZE": "STRING",
+                "SMALTALG": "STRING",
+                "SMATSSCR": "STRING",
+                "SMBSMMRT": "STRING",
+                "SMCENTER": "STRING",
+                "SMCGLGTH": "STRING",
+                "SMCHMPRS": "STRING",
+                "SMDPMPRT": "STRING",
+                "SME1ANTI": "STRING",
+                "SME1MMRT": "STRING",
+                "SME1MPRT": "STRING",
+                "SME1PCTS": "STRING",
+                "SME1SNSE": "STRING",
+                "SME2ANTI": "STRING",
+                "SME2MMRT": "STRING",
+                "SME2MPRT": "STRING",
+                "SME2PCTS": "STRING",
+                "SME2SNSE": "STRING",
+                "SMESTLBS": "STRING",
+                "SMEXNCRT": "STRING",
+                "SMEXPEFF": "STRING",
+                "SMGAPPCT": "STRING",
+                "SMGEBTCH": "STRING",
+                "SMGEBTCHD": "STRING",
+                "SMGEBTCHT": "STRING",
+                "SMGNSDTC": "STRING",
+                "SMGTC": "STRING",
+                "SMMAPRT": "STRING",
+                "SMMFLGTH": "STRING",
+                "SMMNCPB": "STRING",
+                "SMMNCV": "STRING",
+                "SMMPPD": "STRING",
+                "SMMPPDPR": "STRING",
+                "SMMPPDUN": "STRING",
+                "SMMPUNRT": "STRING",
+                "SMNABTCH": "STRING",
+                "SMNABTCHD": "STRING",
+                "SMNABTCHT": "STRING",
+                "SMNTERRT": "STRING",
+                "SMNTRART": "STRING",
+                "SMNTRNRT": "STRING",
+                "SMNUM5CD": "STRING",
+                "SMNUMGPS": "STRING",
+                "SMPTHNTS": "STRING",
+                "SMRDLGTH": "STRING",
+                "SMRDTTL": "STRING",
+                "SMRIN": "STRING",
+                "SMRRNANM": "STRING",
+                "SMRRNART": "STRING",
+                "SMSFLGTH": "STRING",
+                "SMSPLTRD": "STRING",
+                "SMTRSCPT": "STRING",
+                "SMTS": "STRING",
+                "SMTSD": "STRING",
+                "SMTSISCH": "STRING",
+                "SMTSPAX": "STRING",
+                "SMUBRID": "STRING",
+                "SMUNMPRT": "STRING",
+                "SMUNPDRD": "STRING",
+                "SMVQCFL": "STRING"
+              },
+          "sample_id": "STRING"
+        }
+    },
+    {
+      "gid": "Transcript",
+      "label": "Transcript",
+      "data": {
+          "biotype": "STRING",
+          "chromosome": "STRING",
+          "end": "NUMERIC",
+          "gene_id": "STRING",
+          "genome": "STRING",
+          "start": "NUMERIC",
+          "strand": "STRING",
+          "transcript_id": "STRING"
+        }
+    },
+    {
+      "gid": "Protein",
+      "label": "Protein",
+      "data": {
+          "genome": "STRING",
+          "protein_id": "STRING",
+          "transcript_id": "STRING",
+          "uniprot_id": "STRING"
+        }
+    },
+    {
+      "gid": "Aliquot",
+      "label": "Aliquot",
+      "data": {
+          "aliquot_id": "STRING",
+          "gdc_attributes": {
+                "aliquot_id": "STRING",
+                "analyte_type": "UNKNOWN",
+                "sample_type": "STRING",
+                "submitter_id": "STRING",
+                "tumor_descriptor": "UNKNOWN"
+              }
+        }
+    },
+    {
+      "gid": "Case",
+      "label": "Case",
+      "data": {
+          "case_id": "STRING",
+          "ccle_attributes": {
+                "gender": "STRING"
+              },
+          "gdc_attributes": {
+                "demographic": {
+                      "age_at_index": "UNKNOWN",
+                      "cause_of_death": "UNKNOWN",
+                      "created_datetime": "STRING",
+                      "days_to_birth": "UNKNOWN",
+                      "days_to_death": "UNKNOWN",
+                      "demographic_id": "STRING",
+                      "ethnicity": "STRING",
+                      "gender": "STRING",
+                      "premature_at_birth": "UNKNOWN",
+                      "race": "STRING",
+                      "state": "STRING",
+                      "submitter_id": "STRING",
+                      "updated_datetime": "STRING",
+                      "vital_status": "UNKNOWN",
+                      "weeks_gestation_at_birth": "UNKNOWN",
+                      "year_of_birth": "NUMERIC",
+                      "year_of_death": "NUMERIC"
+                    },
+                "diagnoses": [
+                      {
+                            "age_at_diagnosis": "NUMERIC",
+                            "created_datetime": "STRING",
+                            "days_to_death": "UNKNOWN",
+                            "days_to_last_follow_up": "NUMERIC",
+                            "diagnosis_id": "STRING",
+                            "last_known_disease_status": "STRING",
+                            "morphology": "STRING",
+                            "primary_diagnosis": "STRING",
+                            "progression_or_recurrence": "STRING",
+                            "site_of_resection_or_biopsy": "STRING",
+                            "state": "STRING",
+                            "submitter_id": "STRING",
+                            "tissue_or_organ_of_origin": "STRING",
+                            "tumor_grade": "STRING",
+                            "tumor_stage": "STRING",
+                            "updated_datetime": "STRING",
+                            "vital_status": "STRING"
+                          }
+                    ],
+                "disease_type": "STRING",
+                "primary_site": "STRING",
+                "project": {
+                      "dbgap_accession_number": "STRING",
+                      "disease_type": [
+                            "STRING"
+                          ],
+                      "name": "STRING",
+                      "primary_site": [
+                            "STRING"
+                          ],
+                      "program": {
+                            "dbgap_accession_number": "STRING",
+                            "name": "STRING",
+                            "program_id": "STRING"
+                          },
+                      "project_id": "STRING",
+                      "releasable": "BOOL",
+                      "released": "BOOL",
+                      "state": "STRING"
+                    },
+                "summary": {
+                      "data_categories": [
+                            {
+                                  "data_category": "STRING",
+                                  "file_count": "NUMERIC"
+                                }
+                          ],
+                      "experimental_strategies": [
+                            {
+                                  "experimental_strategy": "STRING",
+                                  "file_count": "NUMERIC"
+                                }
+                          ],
+                      "file_count": "NUMERIC",
+                      "file_size": "NUMERIC"
+                    }
+              },
+          "gtex_attributes": {
+                "AGE": "STRING",
+                "DTHHRDY": "STRING",
+                "SEX": "STRING",
+                "SUBJID": "STRING"
+              }
+        }
+    },
+    {
+      "gid": "DrugResponse",
+      "label": "DrugResponse",
+      "data": {
+          "act_area": "NUMERIC",
+          "activity_data_median": [
+                "NUMERIC"
+              ],
+          "activity_sd": [
+                "NUMERIC"
+              ],
+          "amax": "NUMERIC",
+          "compound_id": "STRING",
+          "doses_um": [
+                "NUMERIC"
+              ],
+          "ec50": "NUMERIC",
+          "fit_type": "STRING",
+          "ic50": "NUMERIC",
+          "num_data": "NUMERIC",
+          "sample_id": "STRING",
+          "source": "STRING"
+        }
+    },
+    {
+      "gid": "Exon",
+      "label": "Exon",
+      "data": {
+          "chromosome": "STRING",
+          "end": "NUMERIC",
+          "exon_id": "STRING",
+          "genome": "STRING",
+          "start": "NUMERIC",
+          "strand": "STRING",
+          "transcript_id": [
+                "STRING"
+              ]
+        }
+    },
+    {
+      "gid": "G2PAssociation",
+      "label": "G2PAssociation",
+      "data": {
+          "description": "STRING",
+          "evidence_label": "STRING",
+          "oncogenic": "STRING",
+          "response_type": "STRING",
+          "source": "STRING",
+          "source_document": "STRING"
+        }
+    },
+    {
+      "gid": "Allele",
+      "label": "Allele",
+      "data": {
+          "alternate_bases": "STRING",
+          "chromosome": "STRING",
+          "dbSNP_RS": "STRING",
+          "effect": "STRING",
+          "end": "NUMERIC",
+          "ensembl_transcript": "STRING",
+          "genome": "STRING",
+          "hugo_symbol": "STRING",
+          "reference_bases": "STRING",
+          "start": "NUMERIC",
+          "strand": "STRING",
+          "type": "STRING"
+        }
+    },
+    {
+      "gid": "CopyNumberAlteration",
+      "label": "CopyNumberAlteration",
+      "data": {
+          "id": "STRING",
+          "method": "STRING",
+          "source": "STRING",
+          "values": {
+                "ENSG...": "STRING"
+              }
+        }
+    },
+      {
+      "gid": "GeneExpression",
+      "label": "GeneExpression",
+      "data": {
+          "id": "STRING",
+          "method": "STRING",
+          "metric": "STRING",
+          "source": "STRING",
+          "values": {
+                "ENSG...": "STRING"
+              }
+        }
+    },
+    {
+      "gid": "Publication",
+      "label": "Publication",
+      "data": {
+          "abstract": "STRING",
+          "author": [
+                "STRING"
+              ],
+          "citation": [
+                "UNKNOWN"
+              ],
+          "date": "STRING",
+          "text": "STRING",
+          "title": "STRING",
+          "url": "STRING"
+        }
+    },
+    {
+      "gid": "TranscriptExpression",
+      "label": "TranscriptExpression",
+      "data": {
+          "id": "STRING",
+          "method": "STRING",
+          "metric": "STRING",
+          "source": "STRING",
+          "values": {
+                "ENST...": "NUMERIC"
+              }
+        }
+    }
+  ],
+  "edges": [
+    {
+      "gid": "(G2PAssociation)--HasGeneFeature->(Gene)",
+      "label": "HasGeneFeature",
+      "from": "G2PAssociation",
+      "to": "Gene",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Project)--InProgram->(Program)",
+      "label": "InProgram",
+      "from": "Project",
+      "to": "Program",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Case)--TreatedWith->(Compound)",
+      "label": "TreatedWith",
+      "from": "Case",
+      "to": "Compound",
+      "data": {
+        }
+    },
+    {
+      "gid": "(G2PAssociation)--HasMinimalAlleleFeature->(MinimalAllele)",
+      "label": "HasMinimalAlleleFeature",
+      "from": "G2PAssociation",
+      "to": "MinimalAllele",
+      "data": {
+        }
+    },
+    {
+      "gid": "(MinimalAllele)--MinimalAlleleIn->(Gene)",
+      "label": "MinimalAlleleIn",
+      "from": "MinimalAllele",
+      "to": "Gene",
+      "data": {
+        }
+    },
+    {
+      "gid": "(G2PAssociation)--HasEnvironment->(Compound)",
+      "label": "HasEnvironment",
+      "from": "G2PAssociation",
+      "to": "Compound",
+      "data": {
+        }
+    },
+    {
+      "gid": "(CopyNumberAlteration)--CopyNumberAlterationOf->(Aliquot)",
+      "label": "CopyNumberAlterationOf",
+      "from": "CopyNumberAlteration",
+      "to": "Aliquot",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Aliquot)--PhenotypeOf->(Phenotype)",
+      "label": "PhenotypeOf",
+      "from": "Aliquot",
+      "to": "Phenotype",
+      "data": {
+        }
+    },
+    {
+      "gid": "(PFAMClan)--PFAMClanMember->(PFAMFamily)",
+      "label": "PFAMClanMember",
+      "from": "PFAMClan",
+      "to": "PFAMFamily",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Case)--InProject->(Project)",
+      "label": "InProject",
+      "from": "Case",
+      "to": "Project",
+      "data": {
+        }
+    },
+    {
+      "gid": "(GeneOntologyTerm)--GeneOntologyIsA->(GeneOntologyTerm)",
+      "label": "GeneOntologyIsA",
+      "from": "GeneOntologyTerm",
+      "to": "GeneOntologyTerm",
+      "data": {
+        }
+    },
+    {
+      "gid": "(GeneExpression)--GeneExpressionOf->(Aliquot)",
+      "label": "GeneExpressionOf",
+      "from": "GeneExpression",
+      "to": "Aliquot",
+      "data": {
+        }
+    },
+    {
+      "gid": "(G2PAssociation)--HasAlleleFeature->(Allele)",
+      "label": "HasAlleleFeature",
+      "from": "G2PAssociation",
+      "to": "Allele",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Sample)--SampleFor->(Case)",
+      "label": "SampleFor",
+      "from": "Sample",
+      "to": "Case",
+      "data": {
+        }
+    },
+    {
+      "gid": "(G2PAssociation)--HasSupportingReference->(Publication)",
+      "label": "HasSupportingReference",
+      "from": "G2PAssociation",
+      "to": "Publication",
+      "data": {
+        }
+    },
+    {
+      "gid": "(TranscriptExpression)--TranscriptExpressionOf->(Aliquot)",
+      "label": "TranscriptExpressionOf",
+      "from": "TranscriptExpression",
+      "to": "Aliquot",
+      "data": {
+        }
+    },
+    {
+      "gid": "(GeneOntologyTerm)--GeneOntologyAnnotation->(PFAMFamily)",
+      "label": "GeneOntologyAnnotation",
+      "from": "GeneOntologyTerm",
+      "to": "PFAMFamily",
+      "data": {
+          "evidence": "STRING",
+          "references": [
+                "STRING"
+              ],
+          "title": "STRING"
+        }
+    },
+    {
+      "gid": "(GeneOntologyTerm)--GeneOntologyAnnotation->(Gene)",
+      "label": "GeneOntologyAnnotation",
+      "from": "GeneOntologyTerm",
+      "to": "Gene",
+      "data": {
+          "evidence": "STRING",
+          "references": [
+                "STRING"
+              ],
+          "title": "STRING"
+        }
+    },
+    {
+      "gid": "(Transcript)--TranscriptFor->(Gene)",
+      "label": "TranscriptFor",
+      "from": "Transcript",
+      "to": "Gene",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Protein)--ProteinFor->(Transcript)",
+      "label": "ProteinFor",
+      "from": "Protein",
+      "to": "Transcript",
+      "data": {
+        }
+    },
+    {
+      "gid": "(DrugResponse)--ResponseIn->(Aliquot)",
+      "label": "ResponseIn",
+      "from": "DrugResponse",
+      "to": "Aliquot",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Protein)--PFAMAlignment->(PFAMFamily)",
+      "label": "PFAMAlignment",
+      "from": "Protein",
+      "to": "PFAMFamily",
+      "data": {
+          "end": "NUMERIC",
+          "start": "NUMERIC"
+        }
+    },
+    {
+      "gid": "(Callset)--CallsetFor->(Aliquot)",
+      "label": "CallsetFor",
+      "from": "Callset",
+      "to": "Aliquot",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Aliquot)--AliquotFor->(Sample)",
+      "label": "AliquotFor",
+      "from": "Aliquot",
+      "to": "Sample",
+      "data": {
+        }
+    },
+    {
+      "gid": "(ProteinStructure)--StructureFor->(Protein)",
+      "label": "StructureFor",
+      "from": "ProteinStructure",
+      "to": "Protein",
+      "data": {
+        }
+    },
+    {
+      "gid": "(DrugResponse)--ResponseTo->(Compound)",
+      "label": "ResponseTo",
+      "from": "DrugResponse",
+      "to": "Compound",
+      "data": {
+        }
+    },
+    {
+      "gid": "(G2PAssociation)--HasPhenotype->(Phenotype)",
+      "label": "HasPhenotype",
+      "from": "G2PAssociation",
+      "to": "Phenotype",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Exon)--ExonFor->(Transcript)",
+      "label": "ExonFor",
+      "from": "Exon",
+      "to": "Transcript",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Allele)--AlleleIn->(Gene)",
+      "label": "AlleleIn",
+      "from": "Allele",
+      "to": "Gene",
+      "data": {
+        }
+    },
+    {
+      "gid": "(Callset)--AlleleCall->(Allele)",
+      "label": "AlleleCall",
+      "from": "Callset",
+      "to": "Allele",
+      "data": {
+          "alt": "STRING",
+          "ensembl_gene": "STRING",
+          "ensembl_transcript": "STRING",
+          "filter": "STRING",
+          "methods": [
+                "STRING"
+              ],
+          "n_alt_count": "NUMERIC",
+          "n_depth": "NUMERIC",
+          "n_ref_count": "NUMERIC",
+          "ref": "STRING",
+          "t_alt_count": "NUMERIC",
+          "t_depth": "NUMERIC",
+          "t_ref_count": "NUMERIC"
+        }
+    }
+  ]
+}
