@@ -1,20 +1,14 @@
-* For react development:
-  * Launch `yarn start` from the `schema-viewer` directory as usual
-  * Set parameters in `schema-viewer/public/index.html`
-  * Enjoy full react development environment with autoloading, full stack traces, etc.
+# GRIP Schema Viewer
 
+To use this project with [GRIP](https://github.com/bmeg/grip) run `yarn build` and configure your GRIP 
+server's content directory to at the build directory. 
 
-* For hugo development:
-  * The hugo shortcode at `layouts/shortcodes/schema.html` generates the html this component will mount into.
-    * The shortcode controls the parameters used by the component, currently:
-      * `layout` - cytoscape defined layouts
-      * `url` - the graph schema defined in json
-  * Integration of the React component is accomplished by:
-    * `yarn deploy` - run this after producing production code via `yarn build`
-  * React CSS is inserted, manually at this time, into `layouts/partials/head.html`    
-  * React JS is inserted, automatically, into `layouts/partials/tail.html`
-    * see schema-viewer/src/repackage-index.js for details
+```
+Server:
+  ContentDir: /path/to/grip-viewer/build/
+```
 
+Start your GRIP server and access the React app via your configured HTTP port. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
