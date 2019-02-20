@@ -1,14 +1,14 @@
 # GRIP Schema Viewer
 
-To use this project with [GRIP](https://github.com/bmeg/grip) run `yarn build` and configure your GRIP 
-server's content directory to at the build directory. 
+To use this app with [GRIP](https://github.com/bmeg/grip), run `yarn build` and configure your  
+server's content directory to point at the resulting build directory. 
 
 ```
 Server:
   ContentDir: /path/to/grip-viewer/build/
 ```
 
-Start your GRIP server and access the React app via your configured HTTP port. 
+Start your GRIP server and view the app via the server's HTTP port. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
